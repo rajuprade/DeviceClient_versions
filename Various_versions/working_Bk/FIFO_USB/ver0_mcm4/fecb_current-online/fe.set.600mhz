@@ -1,0 +1,57 @@
+
+* run file for setting FRONT END parameters.
+
+mpa 3 0 4 5
+comm 0;dest 17;t3v
+
+* CH[0] Settings : NG_cycle[0], NG_Freq[0] FE_sel[1] WLSH_P[0] WLSH_Freq[0] 
+* CH[1] Settings : NG_cycle[0], NG_Freq[0] FE_sel[1] WLSH_P[0] WLSH_Freq[0] 
+
+* MCM 5 OFF 
+ana 07000x 0f000x
+st32dig(4)
+
+* MCM 5 ON 
+ana 07010x 0f010x
+st32dig(4)
+
+
+* Freq. Band:600 MHz, Solar Attn.:0 dB
+
+* Polarisation:Unswapped, Noise-Cal level:E-HI
+
+enamcmq
+ana 0990x 0090x 0A01x 0001x
+st64dig(5)
+ana 0790x 0090x 0801x 0001x
+st64dig(5)
+ana 0116x 0016x
+st32dig(5)
+ana 0216x 0016x
+st32dig(5)
+ana 0316x 0016x
+st32dig(5)
+ana 0416x 0016x
+st32dig(5)
+ana 0616x 0016x
+st32dig(5)
+ana 0566x 0066x
+st32dig(5)
+dismcmq
+
+
+* FE-CB MONITORING 
+comm 710;dest=5;t3v;t3v
+comm 700;dest=5;CPA(1)=4;t3v;t3v
+
+* MCM ON 
+ana 07010x 0f010x
+st32dig(4)
+
+* MCM OFF 
+ana 07000x 0f000x
+st32dig(4)
+
+mpa 1 5
+comm 30;dest 17;t3v
+

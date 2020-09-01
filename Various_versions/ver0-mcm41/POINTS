@@ -1,0 +1,185 @@
+
+# 3	Antenna_control_&_Position	June Week 3	Deepak	        13th June 2018
+ - AGN/CPX Shall be stable.
+
+ . New source with all field enable (information filled, only 5 field tested).
+
+// can be checked with online later, 1st order accuracy shall be okey.
+ . Rise-set, transit, track-path okey with existing online 
+ . tracking correctness -- extract servo data check with theoratical values of GMRT
+
+ -. line (post-poned but plugin).
+ . track_Az_el_off or track_Ra_Dec_off
+
+ . Load Axis correction.
+
+ . Lattitude, longitude and height integration - From CMC 30 antenna file, loading to individual antenna (either using load_init_para/load_ant_para) command. Ensure that these values at respective antennas are being utilized for the calculations.
+
+ . Servo alarms -- Check with Thiyagrajan
+
+ . Servo event -- Are servo events like 'hold' , 'brakes' applied etc coming.
+
+ . Servo read set parameters -- Make sure that read_set_para command for servo introspect is working and 
+   introspect parameters parameters are coming.
+
+-------------------------------------------------------------------------------------------------------------------------
+# 6	Correlator_setup (IFR)	        June Week 3	Jitendra	13th June 2018
+  - Dependency - AGN/CPX shall be stable and antenna must be tracking
+  # Basic single array
+  . GSB Correlator IFR testing + Data monitoring  from CMC
+  . GWB Correlator IFR testing + Data monitoring  from CMC
+  . GWB+GSB Both Correlator IFR testing + Data monitoring  from CMC
+  . Fringe Checking
+  . Skyplot checking
+
+  # Multiple Array - OPER terminals
+  . GSB, GWB Ownership to different OPER terminal
+  . Configuiring/Initializing of the correlator
+  . Adding Deleting projects (till it maximum reach)
+  . Starting multiple project scans and checking.
+  . Tracking and Phase center checking
+
+  - When antennas are tracking, Correlator shall able to accept commands.
+
+-------------------------------------------------------------------------------------------------------------------------
+  
+# 7	Power_Equalisation	        June Week 3	Sachin	        13th June 2018
+  - Dependency - GWB Shall work from the CMC.
+
+  . Power Equalization using GWB Data, puting attenuation in the GAB.
+  . Power Equalization GAB Detector + Puting attenuation in the GAB
+  . Power Equalization GUI + Provision to develope it for the GSB as well.
+-------------------------------------------------------------------------------------------------------------------------
+
+# 10	Monitoring_Observations	        June Week 3	Santaji	        13th June 2018
+
+  . Skyplot Catalog source - 2D plot after selection - AZ EL update
+    Subarray antennas, given source, tracking and phase center proper
+
+  . Polar plot - Polar plot expected antenna position/update
+                  Subarray frequency, source-name.
+
+  . Arraystatus - Target/Expected AZ EL_Values - current encoder for AZ/EL - in deg, arc-min or arc-sec
+                 -All flags coming correctly or not?
+                  Source information - RA, DEC, AZ-EL/RA-DEC Off, Phase source.
+
+-------------------------------------------------------------------------------------------------------------------------
+
+# 13	Log-on and Log-Off	        June Week 3	Raj	        13th June 2018
+   . login AGN<N> - Test_Operator<X>, Multiple Instances - Number of logging (Jive).
+                  - Different Users                      - Login/Logout action - number instances Variable
+ 
+   . Last Operator (Super_Operator) from AGN0, antenna_park - script (Default_path) execution.
+
+     bug 154.
+   . Test_Operator1 -> switch User -> Test_Operator2 
+---------------------------------------------------------------------------------------------------
+       
+# 14	System_Shutdown	                June Week 3	Raj	        13th June 2018
+    . Normal shutdown -- LMC shutdown (Script,process kill), AGN/CMC 
+      start after normal shutdown - Up (Starter issue, communicate - disconnected  state?).
+
+    . Emergency Shutdown - LMC will not get kill, only CMC process kills.
+      After restart - Script file execute ?// Restore
+
+
+    . LMC shutdown,and made again UP - CMC command issue.
+
+    . Master Control -> LMC shutdown, restart is it working.
+---------------------------------------------------------------------------------------------------
+
+# 15	Data_Logging	                June Week 3	Navnath	        13th June 2018
+    . Data Logging -> All antenna at the CMC (All subsystems).
+                   -> LMC in parallel, irrespective of CMC is logging or not.
+    . Number of attributes, and event subscriber? currently 1 Event subscriber.
+
+    . Pass Criteria - All antenna Servo, wind. Temperature of FE System. shall be logged and retreived for 1 or 2 day.
+      plot
+
+# 16	View_Logs	                June Week 3	Navnath	        13th June 2018
+
+       Data Retreival possible, plotting.
+
+-------------------------------------------------------------------------------------------------
+# 1	Define_Subarray	                June Week 3	Raj	        14th June 2018
+     . Antenna Allocation to OPER Terminal
+     . Within OPER - Multiple Subarray
+     -> Check quick-access window -- Array display
+
+     Multiple times action for antenna allocation, deallocation is it working
+     . Super_Operator(AGN0) -> ManagePool
+     . In OPER - ManageArray.
+
+     . Command for subarray issuing succeeding.
+
+     . AGN0 - One antenna in  ManageArray - Subarray is allocated, And Same  antenna trying to allocate to
+       other OPER AGN<1 to 5> 
+       When AGN1 tries to create subarray with such antenna - It shall give message already in use by AGN0.
+
+     . Stop data acqusiton while allocating/deallocating antenna, pop-up shall come and command will not be issued.
+     
+-------------------------------------------------------------------------------------------------
+# 18	M&C_Requirements	        June Week 3	Raj + Jitendra	14th June 2018
+
+     . Script path/file - File do not exists - program Error -shall not kill.
+
+     . Within Batch Command - any command failed, aggregated status shall be failed.
+
+     . Tool tips?
+
+     . Installation and configuration manual and procedural check.
+-------------------------------------------------------------------------------------------------
+# 2	Antenna_Parking	                June Week 3	Jitendra	14th June 2018
+# 21	High wind	                June Week 3	Jitendra	14th June 2018
+
+     . Upon high wind alarm > 40 kmph -> park antenna. 90 degree or brakes applying
+     . Subarray - average wind for 1m > 40 kmph -> Park all subarray, stop acqusition/pause the script,
+         till wind does not exceed 35 kmph for continous 10 minutes from any antenna. 
+         If wind not exceeding for 10 mintues, resume the paused script.
+
+
+-------------------------------------------------------------------------------------------------
+# 17	Monitor Alarm & Warnings	June Week 3	Jitendra	14th June 2018
+     . Detection alarm from single LMC
+     . AGN ALarm contribution to it
+     . Alarm Sound and notification
+     . Alarm logging
+     . Disable/Enable sound
+     . For a single alarm - > Avoid ackownledging of multiple times from the CMC?
+     . ALARM rules definition 
+
+# 22	False alarm	                June Week 3	Jitendra	14th June 2018
+     . Ability to detect faulse alarm (in case LMC not communicating/disconnected, subsystem is timeout/disconnected).
+     . Disabling False alarm, and enabling it again in normal condition
+
+-------------------------------------------------------------------------------------------------
+
+# 11	Basic_Diagnostics	        June Week 3	Jitendra	14th June 2018
+     . Command send from the LMC to subsystem shall respond within 2/3 second
+     . Command executed from the CMC shall execute for single antenna 3-4 second.
+     . Group of 20 antenna - 4 to 10 second.
+     . Expert console shall not hang.
+     
+     . When all 20-30 antennas are in use - tracking and backend data acquisiton is going etc.
+       Command turn-around time shall be less than 4 to 10 second from the CMC.
+    
+---------------------------------------------------------------------------------------
+# 4	Setup Telescope	                June Week 5	Deepak	        TBD
+
+# 5	Tune Receiver	                June Week 5	Santaji	        TBD
+
+# 8	Antenna Phasing	                June Week 5	Santaji	        TBD
+
+# 9	Antenna_Pointing	        June Week 5	Santaji	        TBD
+
+# 19	Non_Functional Requirements	June Week 5	Jitendra	TBD
+
+# 20	Logout scenario	                June Week 5	Raj	        TBD
+
+# 23	Execute Batch Process/Script	June Week 5	Deepak    	TBD
+
+# 24	Time Synchronisation	        June Week 5	Deepak	        TBD
+
+# 25	Correlator_setup (Beam)	        June Week 5	Jitendra	TBD
+
+---------------------------------------------------------------------------------------

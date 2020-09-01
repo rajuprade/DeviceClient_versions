@@ -1,0 +1,12 @@
+### To Stop FECB deviceClient from ngmnc machine using ansible : 
+
+lmcuser@ngmnc:/opt/tangoworkspace/gmrtSys$ ansible antlmc -m shell -a "sudo /home/lmcuser/ver0_mcm4/fecb/stop_client.sh" 
+
+## To check where deviceClient is running 
+
+lmcuser@ngmnc:/opt/tangoworkspace/gmrtSys$ ansible 'antlmc:!ngmnc' -m shell -a "ps aux | grep deviceClient"
+
+## To start FECB deviceClient
+
+./fecb_Start.sh "c00 c01 c02 c04 c05 c06 c08 c09 c10 e02 e03 e04 e05 s01 s02 s03 s04 s06 w01 w02"
+

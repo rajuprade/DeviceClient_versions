@@ -1,0 +1,15 @@
+telemetry@telemetry-VirtualBox:~/FPS_MCM/device_server$ ./server 
+############# SERVER WANTING FOR CLIENT CONNECTION #####
+Enter the Operation Code : 0 for calibrate, 1 for load fps, 2 for fpsboot
+0
+=====> ###########sizeof(parseCMSCmd) is 16598
+=====> sizeofsizeof(devResponse) is 16862
+
+	 seq [11]  Subsystemid [fps]  
+	 ID [422] CMDName [calibrate] 
+	 TimeStamp [ 8-Jun-2018 17:08:32] 
+Number of Arg [0] 
+socket timeout
+Enter the Operation Code : 0 for calibrate, 1 for load fps, 2 for fpsboot
+
+
